@@ -6,6 +6,9 @@ package com.wbydo.reading_generative_art
 import processing.core.*
 
 class Processing : PApplet () {
+    /* 参考にさせて頂きました */
+    /* https://qiita.com/nonsako/items/c193b2eddd9f38bd7844 */
+
     override fun settings() : Unit {
         size(400, 300)
     }
