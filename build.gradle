@@ -22,6 +22,9 @@ dependencies {
     // Use the Kotlin JDK 8 standard library.
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
+    // https://mvnrepository.com/artifact/org.processing/core
+    compile group: 'org.processing', name: 'core', version: '3.3.7'
+
     // Use the Kotlin test library.
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
 
@@ -31,5 +34,5 @@ dependencies {
 
 application {
     // Define the main class for the application
-    mainClassName = 'com.wbydo.reading_generative_art.AppKt'
+    mainClassName = 'com.wbydo.reading_generative_art.ProcessingKt'
 }
