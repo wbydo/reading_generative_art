@@ -6,20 +6,35 @@ package com.wbydo.reading_generative_art
 import processing.core.*
 
 class Processing : PApplet () {
-    /* 参考にさせて頂きました */
-    /* https://qiita.com/nonsako/items/c193b2eddd9f38bd7844 */
+    val dr = 30
+    var i = 0
 
     override fun settings() : Unit {
-        size(400, 300)
+        size(800, 600)
     }
     override fun setup() : Unit {
         background(0.0f)
+        smooth()
+        frameRate(24f)
     }
 
     override fun draw() : Unit {
-        fill(255)
-        noStroke()
-        ellipse(mouseX.toFloat(), mouseY.toFloat(), 10.0f, 10.0f)
+        stroke(255f, 255f, 255f)
+        strokeWeight(0.1f)
+        noFill()
+
+        ellipse(
+            (width / 2).toFloat(),
+            (height / 2).toFloat(),
+            (i * dr).toFloat(),
+            (i * dr).toFloat()
+        )
+
+        if ( i == 0) {
+            i = 10
+        } else {
+            i += 1
+        }
     }
 
     fun run(args: Array<String>) : Unit
