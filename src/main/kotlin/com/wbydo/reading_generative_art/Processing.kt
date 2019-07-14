@@ -14,29 +14,30 @@ class Processing : PApplet () {
         background(255f)
         strokeWeight(1f)
 
-        val r0 = 0f
+        val maxR = 280f
         val x0 = (width / 2).toFloat()
         val y0 = (height / 2).toFloat()
+
+        val maxRound = 20 // 周回数
+        val dTheta = 5
+        var dr = maxR / (maxRound * (360 / dTheta))
 
         stroke(20f, 50f, 70f)
         noFill()
 
         var prevX = x0
         var prevY = y0
-        var prevR = r0
-        for (theta in 0..(360 * 20) step 1) {
+        var prevR = 0f
+        for (theta in 0..(360 * maxRound) step dTheta) {
             val rad = radians(theta.toFloat())
-            val r = prevR
-            val x = x0 + r * cos(rad)
-            val y = y0 + r * sin(rad)
+            val x = x0 + prevR * cos(rad)
+            val y = y0 + prevR * sin(rad)
             line(prevX, prevY, x, y)
 
-            prevR += (random(1f) - 0.5f) * 10
+            prevR = prevR + dr
             prevX = x
             prevY = y
         }
-
-        saveFrame("tmp.jpg")
     }
 
     override fun draw() : Unit {
