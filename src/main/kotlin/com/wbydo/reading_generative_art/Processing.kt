@@ -6,35 +6,40 @@ package com.wbydo.reading_generative_art
 import processing.core.*
 
 class Processing : PApplet () {
-    val dr = 30
-    var i = 0
-
     override fun settings() : Unit {
         size(800, 600)
+        smooth()
     }
     override fun setup() : Unit {
-        background(0.0f)
-        smooth()
-        frameRate(24f)
+        background(255f)
+        strokeWeight(1f)
+
+        val r0 = 0f
+        val x0 = (width / 2).toFloat()
+        val y0 = (height / 2).toFloat()
+
+        stroke(20f, 50f, 70f)
+        noFill()
+
+        var prevX = x0
+        var prevY = y0
+        var prevR = r0
+        for (theta in 0..(360 * 20) step 1) {
+            val rad = radians(theta.toFloat())
+            val r = prevR
+            val x = x0 + r * cos(rad)
+            val y = y0 + r * sin(rad)
+            line(prevX, prevY, x, y)
+
+            prevR += (random(1f) - 0.5f) * 10
+            prevX = x
+            prevY = y
+        }
+
+        saveFrame("tmp.jpg")
     }
 
     override fun draw() : Unit {
-        stroke(255f, 255f, 255f)
-        strokeWeight(0.1f)
-        noFill()
-
-        ellipse(
-            (width / 2).toFloat(),
-            (height / 2).toFloat(),
-            (i * dr).toFloat(),
-            (i * dr).toFloat()
-        )
-
-        if ( i == 0) {
-            i = 10
-        } else {
-            i += 1
-        }
     }
 
     fun run(args: Array<String>) : Unit
