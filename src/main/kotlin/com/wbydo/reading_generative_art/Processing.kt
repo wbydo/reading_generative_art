@@ -18,32 +18,19 @@ class Processing : PApplet () {
     override fun draw() : Unit {
         background(255f)
 
-        val maxR = 280f
-        val x0 = (width / 2).toFloat()
         val y0 = (height / 2).toFloat()
 
-        val maxRound = 20 // 周回数
-        val dTheta = 10
-        var dr = maxR / (maxRound * (360 / dTheta))
+        beginShape()
+        curveVertex((2 * width).toFloat() / 3, (1 * height).toFloat() / 3)
 
-        stroke(20f, 50f, 70f)
-        noFill()
+        curveVertex((1 * width).toFloat() / 3, (1 * height).toFloat() / 3)
+        curveVertex((1 * width).toFloat() / 2, (1 * height).toFloat() / 4)
+        curveVertex((2 * width).toFloat() / 3, (1 * height).toFloat() / 3)
 
-        var prevX = x0
-        var prevY = y0
-        var prevR = 0f
+        curveVertex((1 * width).toFloat() / 3, (1 * height).toFloat() / 3)
+        curveVertex((1 * width).toFloat() / 2, (1 * height).toFloat() / 4)
 
-        val amp = random(100f)
-        for (theta in 0..(360 * maxRound) step dTheta) {
-            val rad = radians(theta.toFloat())
-            val x = x0 + prevR * cos(rad)
-            val y = y0 + prevR * sin(rad)
-            line(prevX, prevY, x, y)
-
-            prevR = prevR + dr + (random(1f) - 0.5f) * amp
-            prevX = x
-            prevY = y
-        }
+        endShape(CLOSE)
     }
 
     fun run(args: Array<String>) : Unit
